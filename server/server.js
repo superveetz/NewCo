@@ -2,8 +2,14 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var ejs = require('ejs');
 
 var app = module.exports = loopback();
+
+// define templating engine
+app.set('view engine', 'html'); // use .html file extension
+app.engine('html', ejs.renderFile); // use ejs to render .html views
+app.set('views', __dirname + '/views'); // set default views directory
 
 app.start = function() {
   // start the web server
